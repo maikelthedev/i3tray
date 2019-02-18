@@ -1,0 +1,77 @@
+{
+
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+
+  {
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+      {
+        "border": "pixel",
+        "current_border_width": 1,
+        "floating": "auto_off",
+        "name": "fish   /home/maikel",
+        "swallows": [
+          {
+            "class": "$"
+          }
+        ],
+        "type": "con"
+      },
+      {
+        "border": "pixel",
+        "current_border_width": 1,
+        "floating": "auto_off",
+        "name": "fish   /home/maikel",
+        "swallows": [
+          {
+            "class": "$"
+          }
+        ],
+        "type": "con"
+      }
+    ]
+  },
+  {
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+      {
+        "border": "pixel",
+        "current_border_width": 1,
+        "floating": "auto_off",
+        "name": "fish   /home/maikel",
+        "swallows": [
+          {
+            "class": "$"
+          }
+        ],
+        "type": "con"
+      },
+      {
+        "border": "pixel",
+        "current_border_width": 1,
+        "floating": "auto_off",
+        "name": "fish   /home/maikel",
+        "swallows": [
+          {
+            "class": "$"
+          }
+        ],
+        "type": "con"
+      }
+    ]
+  }
+]
+}
