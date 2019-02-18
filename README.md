@@ -1,9 +1,33 @@
-#Title I love literate programming
+# Title I love literate programming
 
 I am really liking literate programming so I wrote this python program using my own implementation [here](https://github.com/maikeldotuk/literatefish)
 
 First be aware I'm important much more than I use because I haven't yet cleaned up what I don't really need. 
 
+Using my literate programming Fish shell function linked above you can both install and execute this file as it contains instructions in both Python and bash
+
+### To install it
+
+```bash
+git clone git@github.com:maikeldotuk/i3tray.git
+cd i3tray
+pip install -r requirements.txt
+```
+### To run it:
+
+```none
+litrun README.md python
+```
+
+### To update it
+
+From the parent folder where installed it just type this and press Return
+```none
+litrun README.md bash
+```
+That will run the bash code (and only that code) inside the section 'to install it'
+
+This is the Python code
 ```python
 import sys
 import os
