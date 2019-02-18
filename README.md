@@ -1,12 +1,12 @@
-# I love literate programming
+# i3tray system tray to change layouts
 
-I am really liking literate programming so I wrote this python program using my own implementation [here](https://github.com/maikeldotuk/literatefish)
+I am really liking literate programming so I wrote this python script using my own Literate Programming implementation in Fish shell [here](https://github.com/maikeldotuk/literatefish) which I wrote yesterday night.
 
-First be aware I'm important much more than I use because I haven't yet cleaned up what I don't really need. 
+First be aware I'm importing libraries than I use because I haven't yet cleaned up what I don't really need. This whole thing is still **in the experimental**. That doesn't stop you from forking it.
 
-Using my literate programming Fish shell function linked above you can both install and execute this file as it contains instructions in both Python and bash
+Using [LiterateFish](https://github.com/maikeldotuk/literatefish) you can both execute and upgrade this file as it contains instructions in both Python and Bash and my little crappy function distinguishes them.
 
-### To install it
+### To install this
 
 ```bash
 git clone git@github.com:maikeldotuk/i3tray.git
@@ -26,6 +26,10 @@ From the parent folder where installed it just type this and press Return
 litrun README.md bash
 ```
 That will run the bash code (and only that code) inside the section 'to install it'
+
+### AUR package.
+
+I will publish a package in the Arch AUR as soon as this stop being experimental for everybody to freely share the joy of having a bit more of mouse functionality in i3. Bear with me while I finish it. Most of what needs to be done is in the comments below. 
 
 This is the Python code
 ```python
