@@ -2,7 +2,7 @@
 
 I am really liking literate programming so I wrote this python script using my own Literate Programming implementation in Fish shell [here](https://github.com/maikeldotuk/literatefish) which I wrote yesterday night.
 
-First be aware I'm importing libraries than I use because I haven't yet cleaned up what I don't really need. This whole thing is still **in the experimental**. That doesn't stop you from forking it.
+Be aware I'm importing libraries that I do not use because I haven't yet cleaned up what I don't really need. This whole thing is still **very experimental**. That doesn't stop you from forking it.
 
 Using [LiterateFish](https://github.com/maikeldotuk/literatefish) you can both execute and upgrade this file as it contains instructions in both Python and Bash and my little crappy function distinguishes them.
 
