@@ -15,14 +15,14 @@ pip install -r requirements.txt
 ```
 ### To run it:
 
-```none
+```
 litrun README.md python
 ```
 
 ### To update it
 
 From the parent folder where installed it just type this and press Return
-```none
+```
 litrun README.md bash
 ```
 That will run the bash code (and only that code) inside the section 'to install it'
@@ -31,7 +31,12 @@ That will run the bash code (and only that code) inside the section 'to install 
 
 I will publish a package in the Arch AUR as soon as this stop being experimental for everybody to freely share the joy of having a bit more of mouse functionality in i3. Bear with me while I finish it. Most of what needs to be done is in the comments below.
 
-This is the Python code
+# This is the Python code
+
+You'll notice it is broken down in sections. My LP implementation reads all these sections as if they were one continuous Python file.
+
+As requested by Reddit users I'll figure out a way to automatically produce non-LP code on-commit for any contributors that prefer it that way. I hate being prescriptive, each one should use whatever they feel comfortable using. If people prefer writing comments using #this in Python, they shouldn't be forced to use LP only because I am using it for this. Neither should I be forced to use #comments. So I'll soon implement a way to have both in this repo on-commit with a Git-hook. All this code has less than 12 hours of existence so far (time of writing this is 18/Feb/2019 at 1:47pm, I wrote the initial code overnight out of boredom) while watching The Umbrella Academy in despair of the moment in which Ellen Page finally used her powers to go all-crazy Carrie mode. Jezz, 10 hours of episodes for what was predicted was going to happen 10 minutes in the show. Anyhow, here is the code, for now:
+
 ```python
 import sys
 import os
@@ -43,11 +48,13 @@ from PyQt5.QtWidgets import QApplication, QWidget, QSystemTrayIcon, QMenu, qApp
 from PyQt5 import QtCore
 from functools import partial
 ```
-This is just laziness, I'm assuming the first loaded layout is the netflix one because I don't have the time right now to bother.
+The next line is just pure laziness, I'm assuming the first loaded layout is the netflix one because I don't have the time right now to bother. My Netflix layout is one in which I have Ungoogled Chromium in app mode (app mode = no title bar, no address bar, no links bar, just the view) in the lower left corner and two consoles one on the top bar and a smaller one by the Netflix window. Because I use a projector and on a 100 inch plus projected screen, you can enjoy Netflix on an approximately 43 inch window.
 
-What this should do is?
+Feel free to create your own layouts. I will add functionality to store layouts soon as requested by [r/West](https://www.reddit.com/user/Wester_West) in Reddit.
+
+What this current_layout variable should do instead is:
 * Detect the layout currently in use.
-	For this it will need to have a way to figure it, by taking the respones from i3 get_tree or similar. I'm still figuring this out.
+	For this it will need to have a way to figure it, by taking the respones from i3 get_tree or similar. I'm still figuring this out. Can I pass "named" layouts to i3? 
 * Assing it to the program when it's first run.
 
 ```python
