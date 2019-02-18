@@ -29,7 +29,7 @@ That will run the bash code (and only that code) inside the section 'to install 
 
 ### AUR package.
 
-I will publish a package in the Arch AUR as soon as this stop being experimental for everybody to freely share the joy of having a bit more of mouse functionality in i3. Bear with me while I finish it. Most of what needs to be done is in the comments below. 
+I will publish a package in the Arch AUR as soon as this stop being experimental for everybody to freely share the joy of having a bit more of mouse functionality in i3. Bear with me while I finish it. Most of what needs to be done is in the comments below.
 
 This is the Python code
 ```python
@@ -43,21 +43,21 @@ from PyQt5.QtWidgets import QApplication, QWidget, QSystemTrayIcon, QMenu, qApp
 from PyQt5 import QtCore
 from functools import partial
 ```
-This is just laziness, I'm assuming the first loaded layout is the netflix one because I don't have the time right now to bother. 
+This is just laziness, I'm assuming the first loaded layout is the netflix one because I don't have the time right now to bother.
 
 What this should do is?
-* Detect the layout currently in use. 
-	For this it will need to have a way to figure it, by taking the respones from i3 get_tree or similar. I'm still figuring this out. 
-* Assing it to the program when it's first run. 
+* Detect the layout currently in use.
+	For this it will need to have a way to figure it, by taking the respones from i3 get_tree or similar. I'm still figuring this out.
+* Assing it to the program when it's first run.
 
 ```python
-current_layout = 'netflix.layout' 
+current_layout = 'netflix.layout'
 ```
 
 This gets all the layouts assuming they are in such folder. Obviously this will need to be configured better. Pending is:
 1. Detect the config folder dependingo the linux distro?
-2. Create the config folder if it doesn't exist. 
-3. Tell the user if there are no layouts found, in which case this whole thing is useless. 
+2. Create the config folder if it doesn't exist.
+3. Tell the user if there are no layouts found, in which case this whole thing is useless.
 
 ```python
 def get_layouts():
@@ -67,7 +67,7 @@ def get_layouts():
             layouts.append(file)
     return layouts
 ```
-We need to detect the current windows in the currently focused workspace so we can later move them in place. I need to figure a way to do this within Python, not depending of a subprocess. 
+We need to detect the current windows in the currently focused workspace so we can later move them in place. I need to figure a way to do this within Python, not depending of a subprocess.
 ```python
 def get_windows():
     processes_raw = subprocess.check_output(['wmctrl', '-l']).strip()
@@ -84,7 +84,7 @@ Xdotool does the job so far, so I didn't think on reimplementing it. Again, as b
 
 This does two things, I should break it in two functions instead. The two things are:
 1. Take all the windows out of the view so they can be placed inside the placeholders
-2. Show all the windows again but this time inside their placeholders. i3 behaviour by default would be to place them as if they were new windows. 
+2. Show all the windows again but this time inside their placeholders. i3 behaviour by default would be to place them as if they were new windows.
 
 ```python
 def reposition_windows(windows, layout):
@@ -103,9 +103,9 @@ def reposition_windows(windows, layout):
 ```
 
 Right, so this is the one that does the magic. Considering we have the layouts as, for example "grid4windows.layout" in a folder with name FOLDER, use that as the filename. But do it in this order:
-1. Get the current windows of the current desktop IDs, before doing any changes. 
-2. Append the layout. 
-3. Move the windows you got from 1 (which means, this doesn't include the newly created placeholders) back into view, hence inside the placeholders. 
+1. Get the current windows of the current desktop IDs, before doing any changes.
+2. Append the layout.
+3. Move the windows you got from 1 (which means, this doesn't include the newly created placeholders) back into view, hence inside the placeholders.
 
 ```python
 def change_layout(layout):
@@ -147,7 +147,7 @@ def cycle_through_layouts():
     change_layout(next_layout)
 
 ```
-Got to change the name of this function. Also, I don't need self. 
+Got to change the name of this function. Also, I don't need self.
 ```python
 def on_systray_activated(self):
     buttons = qApp.mouseButtons()
@@ -174,7 +174,7 @@ class SystemTrayIcon(QSystemTrayIcon):
         self.setContextMenu(menu)
         self.setToolTip("Tooltip")
 ```
-This allows this app to run just called from the command line, but I would implement [@cli](https://pypi.org/project/pyCLI/) at some point to be able to run it properly and with arguments. 
+This allows this app to run just called from the command line, but I would implement [@cli](https://pypi.org/project/pyCLI/) at some point to be able to run it properly and with arguments.
 ```python
 def main():
     app = QApplication(sys.argv)
