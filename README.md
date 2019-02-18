@@ -1,4 +1,4 @@
-# Title I love literate programming
+# I love literate programming
 
 I am really liking literate programming so I wrote this python program using my own implementation [here](https://github.com/maikeldotuk/literatefish)
 
