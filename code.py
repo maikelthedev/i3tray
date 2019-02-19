@@ -1,17 +1,19 @@
 import sys
 import os
 import subprocess
-import pprint
 import json
 from PyQt5 import QtGui
 from PyQt5.QtWidgets import QApplication, QWidget, QSystemTrayIcon, QMenu, qApp
 from PyQt5 import QtCore
 from functools import partial
 
+LAYOUTS_FOLDER = os.getenv('HOME') + '/dotfiles/layouts/'
+current_layout = 'netflix.layout'
+
 
 def get_layouts():
     layouts = []
-    for file in os.listdir():
+    for file in os.listdir(LAYOUTS_FOLDER):
         if (file.split('.')[1] == 'layout'):
             layouts.append(file)
     return layouts
@@ -21,7 +23,7 @@ def get_windows():
     processes_raw = subprocess.check_output(['wmctrl', '-l']).strip()
     separated = processes_raw.split(b'\n')
     desktop_number = subprocess.check_output(
-        ['wmctrl', '-d']).strip().split()[0]
+        ['xdotool', 'get_desktop']).strip()
     programs = []
     for program in separated:
         if (program.split()[1] == desktop_number):
@@ -34,7 +36,7 @@ def reposition_windows(windows, layout):
         subprocess.check_output(['xdotool', 'windowunmap', window])
         subprocess.check_output(['xdotool', 'windowmap', window])
     min_win = 0
-    location_of_layout = os.getenv('HOME') + '/dotfiles/layouts/' + layout
+    location_of_layout = LAYOUTS_FOLDER + layout
     with open(location_of_layout) as json_file:
         data = json.load(json_file)
         min_win = len(str(data).split('class')) - 1
@@ -46,15 +48,16 @@ def reposition_windows(windows, layout):
 
 def change_layout(layout):
     windows = get_windows()
-    file = '~/dotfiles/layouts/' + layout
-    result = subprocess.check_output(['i3',
-                                      'append_layout',
-                                      file,
-                                      ]).strip()
-    reposition_windows(windows, layout)
-    global current_layout
-    current_layout = layout
-    print(result)
+    print(windows)
+    #     file = LAYOUTS_FOLDER + layout
+    #     result = subprocess.check_output(['i3',
+    #                                       'append_layout',
+    #                                       file,
+    #                                       ]).strip()
+    #     reposition_windows(windows, layout)
+    #     global current_layout
+    #     current_layout = layout
+    #     print(result)
 
 
 def add_layouts_to_tray(layouts, menu):
@@ -66,15 +69,9 @@ def add_layouts_to_tray(layouts, menu):
 
 def cycle_through_layouts():
     layouts = get_layouts()
-    print(current_layout)
     which_index = layouts.index(current_layout)
-    print(which_index)
     total = len(layouts)
-    print('total')
-    print(total)
     next_index = which_index+1
-    print('next_index')
-    print(next_index)
     if (which_index+1 > total - 1):
         next_index = 0
     next_layout = layouts[next_index]
@@ -84,9 +81,8 @@ def cycle_through_layouts():
 def on_systray_activated(self):
     buttons = qApp.mouseButtons()
     if buttons & QtCore.Qt.RightButton:
-        print('right-button')
+        pass
     if buttons & QtCore.Qt.LeftButton:
-        print('left-button')
         cycle_through_layouts()
 
 
@@ -105,9 +101,20 @@ class SystemTrayIcon(QSystemTrayIcon):
         self.setToolTip("Tooltip")
 
 
+def show_second_menu():
+    widget = QWidget()
+    menu = QMenu(widget)
+    menu.addAction('hello')
+    menu.addAction('goodbye')
+    menu.show()
+    print('is the menu there?')
+
+
 def main():
     app = QApplication(sys.argv)
     w = QWidget()
+    if 'show' in sys.argv:
+        show_second_menu()
     trayIcon = SystemTrayIcon(QtGui.QIcon("icon.ico"), w)
     trayIcon.show()
     trayIcon.activated.connect(on_systray_activated)
