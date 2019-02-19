@@ -9,20 +9,36 @@
       "border": "pixel",
       "current_border_width": 1,
       "floating": "auto_off",
-      "geometry": {
-        "height": 472,
-        "width": 760,
-        "x": 0,
-        "y": 0
-      },
       "name": "i3-save-tree   /home/maikel",
       "percent": 0.5,
-      "swallows": [
+      "type": "con",
+      "layout": "tabbed",
+      "nodes": [
         {
-          "class": "^Xfce4\\-terminal$"
+          "border": "pixel",
+          "current_border_width": 1,
+          "floating": "auto_off",
+          "name": "Netflix",
+          "swallows": [
+            {
+              "class": "^Chromium$"
+            }
+          ],
+          "type": "con"
+        },
+        {
+          "border": "pixel",
+          "current_border_width": 1,
+          "floating": "auto_off",
+          "name": "fish   /home/maikel",
+          "swallows": [
+            {
+              "class": "$"
+            }
+          ],
+          "type": "con"
         }
-      ],
-      "type": "con"
+      ]
     },
     {
       "border": "pixel",
@@ -35,12 +51,6 @@
           "border": "pixel",
           "current_border_width": 1,
           "floating": "auto_off",
-          "geometry": {
-            "height": 568,
-            "width": 491,
-            "x": 13,
-            "y": 187
-          },
           "name": "Netflix",
           "percent": 0.6298828125,
           "swallows": [
@@ -54,17 +64,11 @@
           "border": "pixel",
           "current_border_width": 1,
           "floating": "auto_off",
-          "geometry": {
-            "height": 472,
-            "width": 760,
-            "x": 0,
-            "y": 0
-          },
           "name": "fish   /home/maikel",
           "percent": 0.3701171875,
           "swallows": [
             {
-              "class": "^Xfce4\\-terminal$"
+              "class": "$"
             }
           ],
           "type": "con"

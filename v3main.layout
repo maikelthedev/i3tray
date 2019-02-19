@@ -10,7 +10,6 @@
         "border": "pixel",
         "current_border_width": 1,
         "floating": "auto_off",
-        "name": "fish   /home/maikel",
         "swallows": [
           {
             "class": "$"
@@ -22,7 +21,6 @@
         "border": "pixel",
         "current_border_width": 1,
         "floating": "auto_off",
-        "name": "fish   /home/maikel",
         "swallows": [
           {
             "class": "$"
@@ -34,7 +32,6 @@
         "border": "pixel",
         "current_border_width": 1,
         "floating": "auto_off",
-        "name": "fish   /home/maikel",
         "swallows": [
           {
             "class": "$"
@@ -48,7 +45,6 @@
     "border": "pixel",
     "current_border_width": 1,
     "floating": "auto_off",
-    "name": "i3-save-tree   /home/maikel/.i3/layouts",
     "percent": 0.6318359375,
     "swallows": [
       {
