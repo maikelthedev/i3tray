@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QSystemTrayIcon, QMenu, qApp
 
 LAYOUTS_FOLDER = os.getenv('HOME') + '/dotfiles/layouts/'
 current_layout = 'netflix.layout'
+current_icon = LAYOUTS_FOLDER + 'netflix.png'
 
 
 def get_layouts():
@@ -50,16 +51,14 @@ def reposition_windows(windows, layout):
 
 def change_layout(layout):
     windows = get_windows()
-    print(windows)
-    #     file = LAYOUTS_FOLDER + layout
-    #     result = subprocess.check_output(['i3',
-    #                                       'append_layout',
-    #                                       file,
-    #                                       ]).strip()
-    #     reposition_windows(windows, layout)
-    #     global current_layout
-    #     current_layout = layout
-    #     print(result)
+    file = LAYOUTS_FOLDER + layout
+    subprocess.check_output(['i3',
+                             'append_layout',
+                             file,
+                             ]).strip()
+    reposition_windows(windows, layout)
+    global current_layout
+    current_layout = layout
 
 
 def add_layouts_to_tray(layouts, menu):
@@ -83,12 +82,13 @@ def cycle_through_layouts():
     change_layout(next_layout)
 
 
-def on_systray_activated(self):
+def on_systray_activated(tray):
     buttons = qApp.mouseButtons()
     if buttons & QtCore.Qt.RightButton:
-        pass
+        qApp.quit()
     if buttons & QtCore.Qt.LeftButton:
         cycle_through_layouts()
+        change_tray_icon(tray)
 
 
 class SystemTrayIcon(QSystemTrayIcon):
@@ -100,22 +100,28 @@ def get_mouse_position():
     return pyautogui.position()
 
 
+def change_tray_icon(tray):
+    icon = LAYOUTS_FOLDER + current_layout + '.png'
+    icon = icon.replace('.layout', '')
+    tray.setIcon(QIcon(icon))
+
+
 def main():
     app = QApplication(sys.argv)
     widget = QWidget()
     if 'show' in sys.argv:
         show_menu(QMenu(widget))
     if 'tray' in sys.argv:
-        trayIcon = SystemTrayIcon(QIcon("icon.ico"), widget)
+        trayIcon = SystemTrayIcon(QIcon(current_icon), widget)
         trayIcon.show()
-        trayIcon.activated.connect(on_systray_activated)
+        trayIcon.activated.connect(partial(on_systray_activated, trayIcon))
     if len(sys.argv) == 1:
         quit()
     sys.exit(app.exec_())
 
 
 def show_menu(menu):
-    icon = QIcon("icon.ico")
+    icon = QIcon(current_icon)
     test = menu.addAction(icon, 'Layouts')
     menu.addSeparator()
     test.setEnabled(False)

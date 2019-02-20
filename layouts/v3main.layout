@@ -1,60 +1,75 @@
-[
-  {
-    "border": "pixel",
-    "floating": "auto_off",
-    "layout": "splitv",
-    "percent": 0.3681640625,
-    "type": "con",
-    "nodes": [
-      {
-        "border": "pixel",
-        "current_border_width": 1,
-        "floating": "auto_off",
-        "name": "fish   /home/maikel",
-        "swallows": [
-          {
-            "class": "$"
-          }
-        ],
-        "type": "con"
-      },
-      {
-        "border": "pixel",
-        "current_border_width": 1,
-        "floating": "auto_off",
-        "name": "fish   /home/maikel",
-        "swallows": [
-          {
-            "class": "$"
-          }
-        ],
-        "type": "con"
-      },
-      {
-        "border": "pixel",
-        "current_border_width": 1,
-        "floating": "auto_off",
-        "name": "fish   /home/maikel",
-        "swallows": [
-          {
-            "class": "$"
-          }
-        ],
-        "type": "con"
-      }
-    ]
-  },
-  {
-    "border": "pixel",
-    "current_border_width": 1,
-    "floating": "auto_off",
-    "name": "i3-save-tree   /home/maikel/.i3/layouts",
-    "percent": 0.6318359375,
-    "swallows": [
-      {
-        "class": "$"
-      }
-    ],
-    "type": "con"
-  }
-]
+{
+  "border": "pixel",
+  "floating": "auto_off",
+  "layout": "splith",
+  "type": "con",
+  "nodes": [
+    {
+      "border": "pixel",
+      "floating": "auto_off",
+      "layout": "splitv",
+      "percent": 0.3,
+      "type": "con",
+      "nodes": [
+        {
+          "border": "pixel",
+          "current_border_width": 1,
+          "floating": "auto_off",
+          "name": "Netflix",
+          "percent": 0.333,
+          "swallows": [
+            {
+              "class": "^Chromium$"
+            }
+          ],
+          "type": "con"
+        },
+        {
+          "border": "pixel",
+          "current_border_width": 1,
+          "floating": "auto_off",
+          "percent": 0.333,
+          "swallows": [
+            {
+              "class": "$"
+            }
+          ],
+          "type": "con"
+        },
+        {
+          "border": "pixel",
+          "current_border_width": 1,
+          "floating": "auto_off",
+          "percent": 0.333,
+          "swallows": [
+            {
+              "class": "$"
+            }
+          ],
+          "type": "con"
+        }
+      ]
+    },
+    {
+      "border": "pixel",
+      "current_border_width": 1,
+      "floating": "auto_off",
+      "percent": 0.7,
+      "type": "con",
+      "layout": "tabbed",
+      "nodes": [
+        {
+          "border": "pixel",
+          "current_border_width": 1,
+          "floating": "auto_off",
+          "swallows": [
+            {
+              "class": "$"
+            }
+          ],
+          "type": "con"
+        }
+      ]
+    }
+  ]
+}

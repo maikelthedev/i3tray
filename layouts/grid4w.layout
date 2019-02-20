@@ -1,12 +1,10 @@
 {
-
     "border": "pixel",
     "floating": "auto_off",
     "layout": "splith",
     "percent": 0.5,
     "type": "con",
     "nodes": [
-
   {
     "border": "pixel",
     "floating": "auto_off",
