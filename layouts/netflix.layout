@@ -33,7 +33,7 @@
           "name": "fish   /home/maikel",
           "swallows": [
             {
-              "class": "$"
+              "class": "^Xfce4\\-terminal$"
             }
           ],
           "type": "con"
@@ -68,7 +68,7 @@
           "percent": 0.3701171875,
           "swallows": [
             {
-              "class": "$"
+              "class": "^Xfce4\\-terminal$"
             }
           ],
           "type": "con"

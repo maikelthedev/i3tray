@@ -1,11 +1,13 @@
+import pyautogui
+from PyQt5.QtGui import QIcon
 import sys
 import os
 import subprocess
 import json
-from PyQt5 import QtGui
-from PyQt5.QtWidgets import QApplication, QWidget, QSystemTrayIcon, QMenu, qApp
 from PyQt5 import QtCore
 from functools import partial
+from PyQt5.QtWidgets import QApplication, QWidget, QSystemTrayIcon, QMenu, qApp
+
 
 LAYOUTS_FOLDER = os.getenv('HOME') + '/dotfiles/layouts/'
 current_layout = 'netflix.layout'
@@ -63,7 +65,10 @@ def change_layout(layout):
 def add_layouts_to_tray(layouts, menu):
     for layout in layouts:
         layout_name = layout.split('.')[0]
-        action = menu.addAction(layout_name)
+        icon_location = LAYOUTS_FOLDER + layout_name + '.png'
+        icon = QIcon(icon_location)
+        # As this stand each layout MUST have an icon with the same name.png
+        action = menu.addAction(icon, layout_name)
         action.triggered.connect(partial(change_layout, layout))
 
 
@@ -89,36 +94,38 @@ def on_systray_activated(self):
 class SystemTrayIcon(QSystemTrayIcon):
     def __init__(self, icon, parent=None):
         QSystemTrayIcon.__init__(self, icon, parent)
-        menu = QMenu(parent)
-        icon = QtGui.QIcon("icon.ico")
-        menu.addSeparator()
-        layouts = get_layouts()
-        add_layouts_to_tray(layouts, menu)
-        menu.addSeparator()
-        closeAction = menu.addAction(icon, "&Close")
-        closeAction.triggered.connect(qApp.quit)
-        self.setContextMenu(menu)
-        self.setToolTip("Tooltip")
 
 
-def show_second_menu():
-    widget = QWidget()
-    menu = QMenu(widget)
-    menu.addAction('hello')
-    menu.addAction('goodbye')
-    menu.show()
-    print('is the menu there?')
+def get_mouse_position():
+    return pyautogui.position()
 
 
 def main():
     app = QApplication(sys.argv)
-    w = QWidget()
+    widget = QWidget()
     if 'show' in sys.argv:
-        show_second_menu()
-    trayIcon = SystemTrayIcon(QtGui.QIcon("icon.ico"), w)
-    trayIcon.show()
-    trayIcon.activated.connect(on_systray_activated)
+        show_menu(QMenu(widget))
+    if 'tray' in sys.argv:
+        trayIcon = SystemTrayIcon(QIcon("icon.ico"), widget)
+        trayIcon.show()
+        trayIcon.activated.connect(on_systray_activated)
+    if len(sys.argv) == 1:
+        quit()
     sys.exit(app.exec_())
+
+
+def show_menu(menu):
+    icon = QIcon("icon.ico")
+    test = menu.addAction(icon, 'Layouts')
+    menu.addSeparator()
+    test.setEnabled(False)
+    layouts = get_layouts()
+    add_layouts_to_tray(layouts, menu)
+    menu.addSeparator()
+    menu.aboutToHide.connect(qApp.quit)
+    location = get_mouse_position()
+    menu.move(location.x, location.y)
+    menu.show()
 
 
 if __name__ == '__main__':

@@ -1,6 +1,19 @@
 [
   {
     "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "name": "i3-save-tree   /home/maikel/.i3/layouts",
+    "percent": 0.6318359375,
+    "swallows": [
+      {
+        "class": "$"
+      }
+    ],
+    "type": "con"
+  },
+  {
+    "border": "pixel",
     "floating": "auto_off",
     "layout": "splitv",
     "percent": 0.3681640625,
@@ -10,6 +23,7 @@
         "border": "pixel",
         "current_border_width": 1,
         "floating": "auto_off",
+        "name": "fish   /home/maikel",
         "swallows": [
           {
             "class": "$"
@@ -21,6 +35,7 @@
         "border": "pixel",
         "current_border_width": 1,
         "floating": "auto_off",
+        "name": "fish   /home/maikel",
         "swallows": [
           {
             "class": "$"
@@ -32,6 +47,7 @@
         "border": "pixel",
         "current_border_width": 1,
         "floating": "auto_off",
+        "name": "fish   /home/maikel",
         "swallows": [
           {
             "class": "$"
@@ -40,17 +56,5 @@
         "type": "con"
       }
     ]
-  },
-  {
-    "border": "pixel",
-    "current_border_width": 1,
-    "floating": "auto_off",
-    "percent": 0.6318359375,
-    "swallows": [
-      {
-        "class": "$"
-      }
-    ],
-    "type": "con"
   }
 ]
